@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36518.9
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaDelivery.DeliveryService.Api", "InstaDelivery.DeliveryService.Api\InstaDelivery.DeliveryService.Api.csproj", "{D1E0C845-BAFC-4FD4-BF6A-AAB7EB714FAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaDelivery.DeliveryService.Domain", "InstaDelivery.DeliveryService.Domain\InstaDelivery.DeliveryService.Domain.csproj", "{B1E3E2F8-C0EC-4ADF-8E97-EF8859453577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaDelivery.DeliveryService.Repository", "InstaDelivery.DeliveryService.Repository\InstaDelivery.DeliveryService.Repository.csproj", "{F44F907C-8DF3-4C4A-98DB-0DE874A0215F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaDelivery.DeliveryService.Proxy", "InstaDelivery.DeliveryService.Proxy\InstaDelivery.DeliveryService.Proxy.csproj", "{0A0069B5-D839-4491-9530-C42F17550C92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaDelivery.DeliveryService.Application", "InstaDelivery.DeliveryService.Application\InstaDelivery.DeliveryService.Application.csproj", "{397C6BE2-FD35-4FDA-8D73-EABFC1E33A9A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D1E0C845-BAFC-4FD4-BF6A-AAB7EB714FAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1E0C845-BAFC-4FD4-BF6A-AAB7EB714FAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1E0C845-BAFC-4FD4-BF6A-AAB7EB714FAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1E0C845-BAFC-4FD4-BF6A-AAB7EB714FAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1E3E2F8-C0EC-4ADF-8E97-EF8859453577}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1E3E2F8-C0EC-4ADF-8E97-EF8859453577}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1E3E2F8-C0EC-4ADF-8E97-EF8859453577}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1E3E2F8-C0EC-4ADF-8E97-EF8859453577}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F44F907C-8DF3-4C4A-98DB-0DE874A0215F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F44F907C-8DF3-4C4A-98DB-0DE874A0215F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F44F907C-8DF3-4C4A-98DB-0DE874A0215F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F44F907C-8DF3-4C4A-98DB-0DE874A0215F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A0069B5-D839-4491-9530-C42F17550C92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A0069B5-D839-4491-9530-C42F17550C92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A0069B5-D839-4491-9530-C42F17550C92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A0069B5-D839-4491-9530-C42F17550C92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{397C6BE2-FD35-4FDA-8D73-EABFC1E33A9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{397C6BE2-FD35-4FDA-8D73-EABFC1E33A9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{397C6BE2-FD35-4FDA-8D73-EABFC1E33A9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{397C6BE2-FD35-4FDA-8D73-EABFC1E33A9A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {73E8AF13-F6BD-4AF6-9290-980085D269E9}
+	EndGlobalSection
+EndGlobal

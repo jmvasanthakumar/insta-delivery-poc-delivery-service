@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="4.0.0" />
+    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="8.14.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InstaDelivery.DeliveryService.Application\InstaDelivery.DeliveryService.Application.csproj" />
+    <ProjectReference Include="..\InstaDelivery.DeliveryService.Domain\InstaDelivery.DeliveryService.Domain.csproj" />
+    <ProjectReference Include="..\InstaDelivery.DeliveryService.Proxy\InstaDelivery.DeliveryService.Proxy.csproj" />
+    <ProjectReference Include="..\InstaDelivery.DeliveryService.Repository\InstaDelivery.DeliveryService.Repository.csproj" />
+  </ItemGroup>
+
+</Project>
