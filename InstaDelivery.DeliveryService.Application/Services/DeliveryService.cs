@@ -42,9 +42,9 @@ internal class DeliveryService(
             OrderId = dto.OrderId,
             DeliveryAgentId = dto.PartnerId,
             DeliveryAddress = JsonConvert.SerializeObject(orderDetails.DeliveryAddress),
-            AssignedAt = DateTimeOffset.UtcNow,
-            UpdatedAt = DateTimeOffset.UtcNow,
-            CreatedAt = DateTimeOffset.UtcNow,
+            AssignedAt = DateTimeOffset.Now,
+            UpdatedAt = DateTimeOffset.Now,
+            CreatedAt = DateTimeOffset.Now,
             Status = DeliveryStatus.Assigned
         };
 
@@ -55,7 +55,7 @@ internal class DeliveryService(
         {
             OrderId = dto.OrderId,
             Status = OrderStatus.Assigned.ToString(),
-            ChangedAt = DateTimeOffset.UtcNow
+            ChangedAt = DateTimeOffset.Now
         });
         return true;
     }
@@ -66,6 +66,11 @@ internal class DeliveryService(
             ?? throw new DeliveryRecordNotFoundException(dto.OrderId);
 
         delivery.Status = dto.Status;
+
+        if (dto.Status == DeliveryStatus.Delivered)
+        {
+            delivery.DeliveredAt = DateTimeOffset.Now;
+        }
 
         unitOfWork.Delivery.Update(delivery);
         await unitOfWork.SaveChangesAsync(ct);
@@ -83,7 +88,7 @@ internal class DeliveryService(
             {
                 OrderId = dto.OrderId,
                 Status = dto.Status == DeliveryStatus.Delivered ? OrderStatus.Delivered.ToString() : OrderStatus.Pending.ToString(),
-                ChangedAt = DateTimeOffset.UtcNow
+                ChangedAt = DateTimeOffset.Now
             });
         }
     }
