@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using InstaDelivery.DeliveryService.Application.Contracts;
 using InstaDelivery.DeliveryService.Application.Dto;
+using InstaDelivery.DeliveryService.Application.Services.Contracts;
 using InstaDelivery.DeliveryService.Proxy.Contracts;
-using InstaDelivery.DeliveryService.Proxy.Response;
 
 namespace InstaDelivery.DeliveryService.Application.Services;
 

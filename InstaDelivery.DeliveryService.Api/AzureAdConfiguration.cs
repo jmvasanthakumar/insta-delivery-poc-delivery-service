@@ -1,4 +1,4 @@
-﻿namespace InstaDelivery.OrderService.Api.Configuration;
+﻿namespace InstaDelivery.DeliveryService.Api;
 
 public class AzureAdConfiguration
 {

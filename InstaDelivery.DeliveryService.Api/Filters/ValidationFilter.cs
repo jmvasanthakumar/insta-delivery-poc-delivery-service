@@ -24,7 +24,7 @@ namespace InstaDelivery.DeliveryService.Api.Filters
                 var validator = _provider.GetService(validatorType) as IValidator;
                 if (validator == null) continue;
 
-                var validationContext = new ValidationContext<object>(param.Value);
+                var validationContext = new ValidationContext<object>(param.Value!);
                 var result = await validator.ValidateAsync(validationContext);
                 if (!result.IsValid)
                 {

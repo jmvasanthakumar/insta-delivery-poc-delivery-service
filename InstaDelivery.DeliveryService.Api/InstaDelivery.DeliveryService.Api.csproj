@@ -7,8 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspNetCore.HealthChecks.AzureServiceBus" Version="9.0.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="9.0.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI" Version="9.0.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="9.0.0" />
     <PackageReference Include="FluentValidation" Version="12.0.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights" Version="2.23.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.23.0" />
     <PackageReference Include="Microsoft.Identity.Web" Version="4.0.0" />
     <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="8.14.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
@@ -17,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\InstaDelivery.DeliveryService.Application\InstaDelivery.DeliveryService.Application.csproj" />
     <ProjectReference Include="..\InstaDelivery.DeliveryService.Domain\InstaDelivery.DeliveryService.Domain.csproj" />
+    <ProjectReference Include="..\InstaDelivery.DeliveryService.Messaging\InstaDelivery.DeliveryService.Messaging.csproj" />
     <ProjectReference Include="..\InstaDelivery.DeliveryService.Proxy\InstaDelivery.DeliveryService.Proxy.csproj" />
     <ProjectReference Include="..\InstaDelivery.DeliveryService.Repository\InstaDelivery.DeliveryService.Repository.csproj" />
   </ItemGroup>

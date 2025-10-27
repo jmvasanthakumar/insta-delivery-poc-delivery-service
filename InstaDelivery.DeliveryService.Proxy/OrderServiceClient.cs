@@ -1,9 +1,7 @@
 ﻿using InstaDelivery.DeliveryService.Proxy.Contracts;
 using InstaDelivery.DeliveryService.Proxy.Response;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Identity.Client;
 using Microsoft.Identity.Web;
-using System.Net.Http.Headers;
 using System.Net.Http.Json;
 
 namespace InstaDelivery.DeliveryService.Proxy;

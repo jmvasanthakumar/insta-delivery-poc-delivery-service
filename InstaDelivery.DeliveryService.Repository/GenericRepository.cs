@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace InstaDelivery.DeliveryService.Repository;
 
-internal class GenericRepository<T> : IGenericRepository<T> where T : class, IEntity
+public class GenericRepository<T> : IGenericRepository<T> where T : class, IEntity
 {
     protected readonly DeliveryDbContext _dbContext;
     protected readonly DbSet<T> _set;

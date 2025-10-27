@@ -2,15 +2,17 @@ using FluentValidation;
 using InstaDelivery.DeliveryService.Api.Configuration;
 using InstaDelivery.DeliveryService.Api.Constants;
 using InstaDelivery.DeliveryService.Api.Filters;
+using InstaDelivery.DeliveryService.Api.HealthChecks;
 using InstaDelivery.DeliveryService.Api.Validators;
 using InstaDelivery.DeliveryService.Application;
+using InstaDelivery.DeliveryService.Messaging;
 using InstaDelivery.DeliveryService.Proxy;
 using InstaDelivery.DeliveryService.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Options;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.TokenCacheProviders.InMemory;
 using Microsoft.OpenApi.Models;
+using Microsoft.ApplicationInsights;
 
 internal class Program
 {
@@ -18,11 +20,17 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        builder.Services.AddApplicationInsightsTelemetry(options =>
+        {
+            options.ConnectionString = builder.Configuration["ApplicationInsights:ConnectionString"];
+        });
+
         // Add services to the container.
         builder.Services.ConfigureRepositories(builder.Configuration);
         builder.Services.ConfigureProxyServices();
 
         builder.Services.ConfigureApplicationServices();
+        builder.Services.ConfigureMessagingServices();
         builder.Services.AddValidatorsFromAssemblyContaining<CreateDeliveryAgentDtoValidator>();
 
         builder.Services.AddControllers(opt =>
@@ -80,6 +88,8 @@ internal class Program
             .AddPolicy(AuthPolicy.ElevatedAccess, policy =>
                   policy.RequireRole("Admin"));
 
+        builder.Services.ConfigureHealthCheck();
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -99,6 +109,8 @@ internal class Program
         app.UseAuthorization();
 
         app.MapControllers();
+
+        app.AddHealthChecks();
 
         app.Run();
     }

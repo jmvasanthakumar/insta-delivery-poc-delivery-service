@@ -16,7 +16,7 @@ public class CreateDeliveryAgentDto : DeliveryAgentBaseDto
 {
 }
 
-public class DeliveryAgentDto
+public class DeliveryAgentDto : DeliveryAgentBaseDto
 {
     public Guid Id { get; set; }
     public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;

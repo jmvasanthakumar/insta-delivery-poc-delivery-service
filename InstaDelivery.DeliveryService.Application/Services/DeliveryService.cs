@@ -1,35 +1,22 @@
-﻿using AutoMapper;
-using InstaDelivery.DeliveryService.Application.Contracts;
-using InstaDelivery.DeliveryService.Application.Dto;
+﻿using InstaDelivery.DeliveryService.Application.Dto;
+using InstaDelivery.DeliveryService.Application.Services.Contracts;
 using InstaDelivery.DeliveryService.Domain;
 using InstaDelivery.DeliveryService.Domain.Entities;
 using InstaDelivery.DeliveryService.Domain.Exceptions;
+using InstaDelivery.DeliveryService.Messaging.Contracts;
+using InstaDelivery.DeliveryService.Messaging.Producers.Contracts;
 using InstaDelivery.DeliveryService.Proxy.Contracts;
 using InstaDelivery.DeliveryService.Repository.Contracts;
+using Newtonsoft.Json;
 
 namespace InstaDelivery.DeliveryService.Application.Services;
 
 internal class DeliveryService(
     IUnitOfWork unitOfWork,
-    IMapper mapper,
-    IOrderServiceClient orderServiceClient) : IDeliveryService
+    IOrderServiceClient orderServiceClient,
+    IOrderEventProducer orderEventProducer) : IDeliveryService
 {
-    public async Task<DeliveryAgentDto> RegisterDeliveryAgentAsync(CreateDeliveryAgentDto deliveryAgentDto, CancellationToken ct)
-    {
-        var entity = mapper.Map<DeliveryAgent>(deliveryAgentDto);
 
-        var isExisting = await unitOfWork.DeliveryAgent.AnyAsync(x => x.Email == deliveryAgentDto.Email && x.PhoneNumber == deliveryAgentDto.PhoneNumber, ct);
-
-        if (isExisting)
-        {
-            throw new DeliveryAgentDetailsAlreadyExistException(deliveryAgentDto.PhoneNumber, deliveryAgentDto.Email);
-        }
-
-        await unitOfWork.DeliveryAgent.AddAsync(entity, ct);
-        await unitOfWork.SaveChangesAsync(ct);
-
-        return mapper.Map<DeliveryAgentDto>(entity);
-    }
 
     public async Task<bool> AssignOrderAsync(AssignOrderDto dto, CancellationToken ct)
     {
@@ -54,7 +41,7 @@ internal class DeliveryService(
         {
             OrderId = dto.OrderId,
             DeliveryAgentId = dto.PartnerId,
-            DeliveryAddress = orderDetails.DeliveryAddress,
+            DeliveryAddress = JsonConvert.SerializeObject(orderDetails.DeliveryAddress),
             AssignedAt = DateTimeOffset.UtcNow,
             UpdatedAt = DateTimeOffset.UtcNow,
             CreatedAt = DateTimeOffset.UtcNow,
@@ -64,6 +51,40 @@ internal class DeliveryService(
         await unitOfWork.Delivery.AddAsync(delivery, ct);
         await unitOfWork.SaveChangesAsync(ct);
 
+        await orderEventProducer.PushOrderEventAsync(new OrderStatusChange
+        {
+            OrderId = dto.OrderId,
+            Status = OrderStatus.Assigned.ToString(),
+            ChangedAt = DateTimeOffset.UtcNow
+        });
         return true;
+    }
+
+    public async Task UpdateDeliveryStatusAsync(DeliveryStatusDto dto, CancellationToken ct)
+    {
+        var delivery = (await unitOfWork.Delivery.FindAsync(x => x.OrderId == dto.OrderId, ct)).SingleOrDefault()
+            ?? throw new DeliveryRecordNotFoundException(dto.OrderId);
+
+        delivery.Status = dto.Status;
+
+        unitOfWork.Delivery.Update(delivery);
+        await unitOfWork.SaveChangesAsync(ct);
+
+        if (dto.Status == DeliveryStatus.Delivered || dto.Status == DeliveryStatus.Cancelled)
+        {
+            var deliveryAgent = await unitOfWork.DeliveryAgent.GetByIdAsync(delivery.DeliveryAgentId!.Value, ct)
+                ?? throw new DeliveryPartnerNotFoundException(delivery.DeliveryAgentId.Value);
+
+            deliveryAgent.Capacity += 1;
+            unitOfWork.DeliveryAgent.Update(deliveryAgent);
+            await unitOfWork.SaveChangesAsync(ct);
+
+            await orderEventProducer.PushOrderEventAsync(new OrderStatusChange
+            {
+                OrderId = dto.OrderId,
+                Status = dto.Status == DeliveryStatus.Delivered ? OrderStatus.Delivered.ToString() : OrderStatus.Pending.ToString(),
+                ChangedAt = DateTimeOffset.UtcNow
+            });
+        }
     }
 }

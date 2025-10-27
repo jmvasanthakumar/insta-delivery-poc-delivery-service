@@ -13,6 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaDelivery.DeliveryServi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaDelivery.DeliveryService.Application", "InstaDelivery.DeliveryService.Application\InstaDelivery.DeliveryService.Application.csproj", "{397C6BE2-FD35-4FDA-8D73-EABFC1E33A9A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaDelivery.DeliveryService.Repository.Tests", "InstaDelivery.DeliveryService.Repository.Tests\InstaDelivery.DeliveryService.Repository.Tests.csproj", "{65F33F62-8452-4B65-AE07-C3CCDF8895B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaDelivery.DeliveryService.Messaging.Contracts", "InstaDelivery.DeliveryService.Messaging.Contracts\InstaDelivery.DeliveryService.Messaging.Contracts.csproj", "{28C0B701-20AF-4927-8AE7-DD2AD1DD4C8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaDelivery.DeliveryService.Messaging", "InstaDelivery.DeliveryService.Messaging\InstaDelivery.DeliveryService.Messaging.csproj", "{9B4A32D4-9E97-439D-AD6D-FEE8CF82902A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +45,18 @@ Global
 		{397C6BE2-FD35-4FDA-8D73-EABFC1E33A9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{397C6BE2-FD35-4FDA-8D73-EABFC1E33A9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{397C6BE2-FD35-4FDA-8D73-EABFC1E33A9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65F33F62-8452-4B65-AE07-C3CCDF8895B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65F33F62-8452-4B65-AE07-C3CCDF8895B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65F33F62-8452-4B65-AE07-C3CCDF8895B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65F33F62-8452-4B65-AE07-C3CCDF8895B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28C0B701-20AF-4927-8AE7-DD2AD1DD4C8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28C0B701-20AF-4927-8AE7-DD2AD1DD4C8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28C0B701-20AF-4927-8AE7-DD2AD1DD4C8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28C0B701-20AF-4927-8AE7-DD2AD1DD4C8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B4A32D4-9E97-439D-AD6D-FEE8CF82902A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B4A32D4-9E97-439D-AD6D-FEE8CF82902A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B4A32D4-9E97-439D-AD6D-FEE8CF82902A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B4A32D4-9E97-439D-AD6D-FEE8CF82902A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
