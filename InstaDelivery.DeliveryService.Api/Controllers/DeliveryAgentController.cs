@@ -14,6 +14,21 @@ public class DeliveryAgentController(
     ILogger<DeliveryAgentController> logger,
     IDeliveryAgentService deliveryAgentService) : ControllerBase
 {
+    [HttpGet("getAgents")]
+    public async Task<IActionResult> GetDeliveryAgents()
+    {
+        try
+        {
+            var result = await deliveryAgentService.GetAllDeliveryAgentsAsync();
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error occurred while fetching delivery agent");
+            return StatusCode(500, new { ex.Message });
+        }
+    }
+
     [HttpPost("registerAgent")]
     [Authorize(Policy = AuthPolicy.ElevatedAccess)]
     public async Task<IActionResult> CreateDeliveryAgent(CreateDeliveryAgentDto request)

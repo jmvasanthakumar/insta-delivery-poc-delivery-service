@@ -10,6 +10,13 @@ namespace InstaDelivery.DeliveryService.Application.Services;
 internal class DeliveryAgentService(IUnitOfWork unitOfWork,
     IMapper mapper) : IDeliveryAgentService
 {
+
+    public async Task<IList<DeliveryAgentDto>> GetAllDeliveryAgentsAsync(CancellationToken ct)
+    {
+        var entities = await unitOfWork.DeliveryAgent.GetAllAsync(ct);
+        return mapper.Map<IList<DeliveryAgentDto>>(entities);
+    }
+
     public async Task<DeliveryAgentDto> RegisterDeliveryAgentAsync(CreateDeliveryAgentDto deliveryAgentDto, CancellationToken ct)
     {
         var entity = mapper.Map<DeliveryAgent>(deliveryAgentDto);
